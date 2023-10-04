@@ -1,0 +1,48 @@
+.phoneBook {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.containerForm {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  border: 1px solid black;
+}
+
+.addBtn {
+  cursor: pointer;
+  border-radius: 4px;
+  max-width: 104px;
+  border: none;
+  padding: 4px 6px;
+  margin: 18px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+}
+
+.addBtn:hover,
+.addBtn:focus,
+.addBtn:active {
+  background-color: lightblue;
+}
+.lebel {
+  flex-direction: column;
+  width: 200px;
+  margin: 18px;
+  display: flex;
+}
+
+.contactItem {
+  margin-bottom: 18px;
+}
+.deleteBtn {
+  margin-left: 20px;
+  width: 45px;
+}
