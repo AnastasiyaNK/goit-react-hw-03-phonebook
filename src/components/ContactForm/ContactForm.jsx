@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import css from './App.module.css';
+import css from './ContactForm.module.css';
 
 export class ContactForm extends Component {
   state = {
@@ -14,11 +14,7 @@ export class ContactForm extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     this.props.handelAddContact({ ...this.state });
-
-    // this.props.handelAddContact({
-    //   name: this.state.name,
-    //   number: this.state.number,
-    // });
+    this.setState({ name: '', number: '' });
   };
 
   render() {

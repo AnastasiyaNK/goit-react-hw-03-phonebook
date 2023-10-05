@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 import css from './App.module.css';
-import { ContactList } from './ContactList';
+import { ContactList } from './ContactList/ContactList';
 import { nanoid } from 'nanoid';
-import { ContactForm } from './ContactForm';
+import { ContactForm } from './ContactForm/ContactForm';
 
 export class App extends Component {
   state = {
@@ -36,18 +36,12 @@ export class App extends Component {
         contacts: [...prevStatet.contacts, newContact],
       };
     });
-
-    // this.setState({ contacts: [...this.state.contacts, newContact] });
   };
 
   handleDeleteContact = contactId => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     }));
-
-    // this.setState({
-    //   contacts: this.state.contacts.filter(contact => contact.id !== contactId),
-    // });
   };
 
   handleInputChange = event => {
