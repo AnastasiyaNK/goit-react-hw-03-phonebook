@@ -4,6 +4,7 @@ import css from './App.module.css';
 import { ContactList } from './ContactList/ContactList';
 import { nanoid } from 'nanoid';
 import { ContactForm } from './ContactForm/ContactForm';
+import { Filter } from './Filter/Filter';
 
 export class App extends Component {
   state = {
@@ -15,6 +16,20 @@ export class App extends Component {
     ],
     filter: '',
   };
+
+  componentDidMount() {
+    const stringifiedContacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(stringifiedContacts) ?? [];
+    this.setState({
+      contacts: parsedContacts,
+    });
+  }
+  componentDidUpdate(_, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      const stringifiedContacts = JSON.stringify(this.state.contacts);
+      localStorage.setItem('contacts', stringifiedContacts);
+    }
+  }
 
   handelAddContact = formData => {
     const isInContact = this.state.contacts.some(
@@ -56,20 +71,6 @@ export class App extends Component {
     );
   };
 
-  componentDidMount() {
-    const stringifiedContacts = localStorage.getItem('contacts');
-    const parsedContacts = JSON.parse(stringifiedContacts) ?? [];
-    this.setState({
-      contacts: parsedContacts,
-    });
-  }
-  componentDidUpdate(_, prevState) {
-    if (prevState.contacts !== this.state.contacts) {
-      const stringifiedContacts = JSON.stringify(this.state.contacts);
-      localStorage.setItem('contacts', stringifiedContacts);
-    }
-  }
-
   render() {
     const filteredContactsByName = this.getVisibleContacts();
 
@@ -78,11 +79,7 @@ export class App extends Component {
         <ContactForm handelAddContact={this.handelAddContact} />
         <h2>Contacts</h2>
         <p>Find contacts by name</p>
-        <input
-          type="text"
-          value={this.state.filter}
-          onChange={this.handleInputChange}
-        />
+        <Filter value={this.state.filter} onChange={this.handleInputChange} />
         <ContactList
           contacts={filteredContactsByName}
           handleDeleteContact={this.handleDeleteContact}
