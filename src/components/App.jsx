@@ -79,7 +79,10 @@ export class App extends Component {
         <ContactForm handelAddContact={this.handelAddContact} />
         <h2>Contacts</h2>
         <p>Find contacts by name</p>
-        <Filter value={this.state.filter} onChange={this.handleInputChange} />
+        <Filter
+          filter={this.state.filter}
+          handleInputChange={this.handleInputChange}
+        />
         <ContactList
           contacts={filteredContactsByName}
           handleDeleteContact={this.handleDeleteContact}
